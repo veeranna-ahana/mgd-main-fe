@@ -1,1 +1,1 @@
-# mgd-main-fe
+# magod-frontend-production
