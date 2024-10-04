@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 
 // import { Button, Menu, MenuItem, Tooltip } from "@mui/material";
@@ -13,74 +15,74 @@ import { AiFillCaretDown } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 
 function Header({ user }) {
-  let getUser = () => {
-    if (localStorage.getItem("LazerUser")) {
-      let data = JSON.parse(localStorage.getItem("LazerUser"));
+	let getUser = () => {
+		if (localStorage.getItem("LazerUser")) {
+			let data = JSON.parse(localStorage.getItem("LazerUser"));
+			// console.log("data", data);
+			if (data) {
+				return data.data;
+			}
 
-      if (data) {
-        return data.data;
-      }
+			return "";
+		}
+	};
 
-      return "";
-    }
-  };
+	let logout = () => {
+		localStorage.removeItem("LazerUser");
 
-  let logout = () => {
-    localStorage.removeItem("LazerUser");
+		window.location.replace("/");
+	};
 
-    window.location.replace("/");
-  };
+	const [anchorEl, setAnchorEl] = useState(null);
 
-  const [anchorEl, setAnchorEl] = useState(null);
+	const userDropDown = Boolean(anchorEl);
 
-  const userDropDown = Boolean(anchorEl);
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+	return (
+		<>
+			<nav className="header">
+				<div style={{ marginLeft: "10px", marginTop: "5px" }}>
+					<h3>Magod ERP</h3>
+				</div>
 
-  return (
-    <>
-      <nav className="header">
-        <div style={{ marginLeft: "10px", marginTop: "5px" }}>
-          <h3>Magod ERP</h3>
-        </div>
+				<div
+					style={{ marginRight: "30px", fontSize: "12px", fontWeight: "600" }}>
+					{getUser() !== undefined ? (
+						<>
+							{/* <>{console.log(getUser())}</> */}
 
-        <div style={{ marginRight: "30px" }}>
-          {getUser() !== undefined ? (
-            <>
-              <>{console.log(getUser())}</>
+							<>
+								{getUser()[0]["Name"]} - {getUser()[0]["UnitName"]} |{" "}
+							</>
 
-              <>
-                {getUser()[0]["Name"]} - {getUser()[0]["UnitName"]} |{" "}
-              </>
+							<button
+								style={{
+									backgroundColor: "transparent",
 
-              <button
-                style={{
-                  backgroundColor: "transparent",
+									border: "none",
 
-                  border: "none",
+									color: "black",
+								}}
+								onClick={logout}>
+								Sign Out
+							</button>
+						</>
+					) : (
+						""
+					)}
+				</div>
+			</nav>
 
-                  color: "black",
-                }}
-                onClick={logout}
-              >
-                Sign Out
-              </button>
-            </>
-          ) : (
-            ""
-          )}
-        </div>
-      </nav>
-
-      <div>&nbsp;</div>
-    </>
-  );
+			<div>&nbsp;</div>
+		</>
+	);
 }
 
 export default Header;
