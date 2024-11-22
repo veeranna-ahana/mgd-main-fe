@@ -30,6 +30,7 @@ function Login() {
 			baseURL + "/user/login",
 			{ username: username, password: formPassword },
 			(data) => {
+				console.log("data", data);
 				if (data.accessToken) {
 					localStorage.setItem("token", data.accessToken);
 					localStorage.setItem("LazerUser", JSON.stringify(data));
