@@ -446,8 +446,11 @@ code {
 
 .card-container {
 	padding: 35px;
-	display: flex;
+	/* display: flex; */
 	gap: 30px;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	/* gap: 20px; */
 }
 
 .dashboard-card {

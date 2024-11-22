@@ -1,24 +1,16 @@
 /** @format */
 
 import React, { useState } from "react";
-
-// import { Button, Menu, MenuItem, Tooltip } from "@mui/material";
-
 import { Link } from "react-router-dom";
-
 import { FiLogOut } from "react-icons/fi";
-
 import { BiDownArrow } from "react-icons/bi";
-
 import { AiFillCaretDown } from "react-icons/ai";
-
 import { CgProfile } from "react-icons/cg";
 
 function Header({ user }) {
 	let getUser = () => {
 		if (localStorage.getItem("LazerUser")) {
 			let data = JSON.parse(localStorage.getItem("LazerUser"));
-			// console.log("data", data);
 			if (data) {
 				return data.data;
 			}
@@ -29,7 +21,6 @@ function Header({ user }) {
 
 	let logout = () => {
 		localStorage.removeItem("LazerUser");
-
 		window.location.replace("/");
 	};
 
@@ -56,8 +47,6 @@ function Header({ user }) {
 					style={{ marginRight: "30px", fontSize: "12px", fontWeight: "600" }}>
 					{getUser() !== undefined ? (
 						<>
-							{/* <>{console.log(getUser())}</> */}
-
 							<>
 								{getUser()[0]["Name"]} - {getUser()[0]["UnitName"]} |{" "}
 							</>
